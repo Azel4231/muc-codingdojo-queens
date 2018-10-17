@@ -1,4 +1,5 @@
 (ns muc-codingdojo-queens.core
+  "Code I showed at the end of the coding dojo. See clean.clj for a cleaner version."
   (:require [clojure.pprint :as p]
             [clojure.math.combinatorics :as c]))
 
@@ -6,6 +7,7 @@
 
 (def empty-line (into [] (repeat dimension :_)))
 (def empty-board (into [] (repeat dimension empty-line)))
+(p/pprint empty-board)
 
 (def all-positions (for [x (range dimension)]
                      (for [y (range dimension)]
@@ -26,7 +28,7 @@
   (= dimension (count (distinct (map (partial apply -) combination)))))
 
 (defn valid? [combination]
-  ((every-pred none-in-same-row?
+  ((every-pred none-in-same-row? 
                none-in-same-column?
                none-on-same-diagonal?
                none-on-same-other-diagonal?)
