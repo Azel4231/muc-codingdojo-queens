@@ -15,8 +15,8 @@
   (apply c/cartesian-product all-positions))
 
 ;; higher order function that allows expressing the rules more concisely
-(defn unique [f coll]
-  (apply distinct? (map f coll)))
+(defn unique [f]
+  (fn [coll] (apply distinct? (map f coll))))
 
 ;; function overloading to make code below more readable
 (def y-coord second)
@@ -24,9 +24,9 @@
 (def diagonal2 (partial apply -))
 
 (def valid?
-  (every-pred #(unique y-coord %)
-              #(unique diagonal1 %)
-              #(unique diagonal2 %)))
+  (every-pred (unique y-coord)
+              (unique diagonal1)
+              (unique diagonal2)))
 
 (def result (filter valid? all-combinations))
 
@@ -46,12 +46,12 @@
 
 (comment
   "4 results ( 6 x 6 ):
-([[:_ :Q :_ :_ :_ :_]
-  [:_ :_ :_ :Q :_ :_]
-  [:_ :_ :_ :_ :_ :Q]
-  [:Q :_ :_ :_ :_ :_]
-  [:_ :_ :Q :_ :_ :_]
-  [:_ :_ :_ :_ :Q :_]]
+ ([[:_ :Q :_ :_ :_ :_]
+   [:_ :_ :_ :Q :_ :_]
+   [:_ :_ :_ :_ :_ :Q]
+   [:Q :_ :_ :_ :_ :_]
+   [:_ :_ :Q :_ :_ :_]
+   [:_ :_ :_ :_ :Q :_]]
   [[:_ :_ :Q :_ :_ :_]
    [:_ :_ :_ :_ :_ :Q]
    [:_ :Q :_ :_ :_ :_]
