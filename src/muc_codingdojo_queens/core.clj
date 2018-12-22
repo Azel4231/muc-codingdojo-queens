@@ -45,4 +45,7 @@
 ;; filter all 16.7M combinations to find the 92 valid ones
 (def result (filter valid? all-combinations))
 
-(println (count result))
+(time (println (count result)))
+
+;; 92
+;; "Elapsed time: 229260.628016 msecs"7

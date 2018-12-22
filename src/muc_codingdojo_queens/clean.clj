@@ -3,7 +3,7 @@
   (:require [clojure.pprint :as p]
             [clojure.math.combinatorics :as c]))
 
-(def dimension 6)
+(def dimension 8)
 
 ;; Could also be done using c/selections
 (def all-positions (for [x (range dimension)]
@@ -11,7 +11,7 @@
                        [x y])))
 
 ;; avoid a lot of code by using a library
-(def all-combinations
+(defn all-combinations []
   (apply c/cartesian-product all-positions))
 
 ;; higher order function that allows expressing the rules more concisely
@@ -28,9 +28,12 @@
               (unique diagonal1)
               (unique diagonal2)))
 
-(def result (filter valid? all-combinations))
+(def result (filter valid? (all-combinations)))
 
-(println (count result) " results (" dimension "x" dimension "):")
+(time (println (count result) " results (" dimension "x" dimension "):"))
+
+;; 92  results ( 8 x 8 ):
+;; "Elapsed time: 38448.036158 msecs"
 
 (def empty-line (into [] (repeat dimension :_)))
 (def empty-board (into [] (repeat dimension empty-line)))
