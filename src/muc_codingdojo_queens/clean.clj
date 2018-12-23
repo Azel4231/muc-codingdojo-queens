@@ -34,43 +34,43 @@
 
 ;; 92  results ( 8 x 8 ):
 ;; "Elapsed time: 38448.036158 msecs"
-
-(def empty-line (into [] (repeat dimension :_)))
-(def empty-board (into [] (repeat dimension empty-line)))
-
-;; Place the queens to the board. Use the x/y tuples as "path" into the two-dimensional array (assoc-in does this).
-(defn add-to-board [board positions]
-  (reduce #(assoc-in %1 %2 :Q)
-          board
-          positions))
-
-;; print all solutions
-(p/pprint (map #(add-to-board empty-board %) result))
-
 (comment
-  "4 results ( 6 x 6 ):
- ([[:_ :Q :_ :_ :_ :_]
-   [:_ :_ :_ :Q :_ :_]
-   [:_ :_ :_ :_ :_ :Q]
-   [:Q :_ :_ :_ :_ :_]
-   [:_ :_ :Q :_ :_ :_]
-   [:_ :_ :_ :_ :Q :_]]
-  [[:_ :_ :Q :_ :_ :_]
-   [:_ :_ :_ :_ :_ :Q]
-   [:_ :Q :_ :_ :_ :_]
-   [:_ :_ :_ :_ :Q :_]
-   [:Q :_ :_ :_ :_ :_]
-   [:_ :_ :_ :Q :_ :_]]
-  [[:_ :_ :_ :Q :_ :_]
-   [:Q :_ :_ :_ :_ :_]
-   [:_ :_ :_ :_ :Q :_]
-   [:_ :Q :_ :_ :_ :_]
-   [:_ :_ :_ :_ :_ :Q]
-   [:_ :_ :Q :_ :_ :_]]
-  [[:_ :_ :_ :_ :Q :_]
-   [:_ :_ :Q :_ :_ :_]
-   [:Q :_ :_ :_ :_ :_]
-   [:_ :_ :_ :_ :_ :Q]
-   [:_ :_ :_ :Q :_ :_]
-   [:_ :Q :_ :_ :_ :_]])")
+  (def empty-line (into [] (repeat dimension :_)))
+  (def empty-board (into [] (repeat dimension empty-line)))
+
+  ;; Place the queens to the board. Use the x/y tuples as "path" into the two-dimensional array (assoc-in does this).
+  (defn add-to-board [board positions]
+    (reduce #(assoc-in %1 %2 :Q)
+            board
+            positions))
+
+  ;; print all solutions
+  (p/pprint (map #(add-to-board empty-board %) result))
+
+  (comment
+    "4 results ( 6 x 6 ):
+   ([[:_ :Q :_ :_ :_ :_]
+     [:_ :_ :_ :Q :_ :_]
+     [:_ :_ :_ :_ :_ :Q]
+     [:Q :_ :_ :_ :_ :_]
+     [:_ :_ :Q :_ :_ :_]
+     [:_ :_ :_ :_ :Q :_]]
+    [[:_ :_ :Q :_ :_ :_]
+     [:_ :_ :_ :_ :_ :Q]
+     [:_ :Q :_ :_ :_ :_]
+     [:_ :_ :_ :_ :Q :_]
+     [:Q :_ :_ :_ :_ :_]
+     [:_ :_ :_ :Q :_ :_]]
+    [[:_ :_ :_ :Q :_ :_]
+     [:Q :_ :_ :_ :_ :_]
+     [:_ :_ :_ :_ :Q :_]
+     [:_ :Q :_ :_ :_ :_]
+     [:_ :_ :_ :_ :_ :Q]
+     [:_ :_ :Q :_ :_ :_]]
+    [[:_ :_ :_ :_ :Q :_]
+     [:_ :_ :Q :_ :_ :_]
+     [:Q :_ :_ :_ :_ :_]
+     [:_ :_ :_ :_ :_ :Q]
+     [:_ :_ :_ :Q :_ :_]
+     [:_ :Q :_ :_ :_ :_]])"))
 
